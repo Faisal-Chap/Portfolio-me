@@ -1,0 +1,194 @@
+{% extends "base.html" %} {% block title %}Home - Faisal Portfolio{% endblock %}
+{% block content %}
+<!-- main head section -->
+<section
+  class="w-full min-h-[60vh] flex flex-col md:flex-row items-center justify-center gap-8 px-6 py-12 bg-white"
+>
+  <!-- Profile Image -->
+  <img
+    src="{{ url_for('static', filename='images/prof.png') }}"
+    alt="Profile Image"
+    class="w-52 h-52 rounded-full object-cover shadow-lg transition-transform duration-300 hover:scale-105"
+  />
+
+  <!-- Text -->
+  <div>
+    <h1 class="text-3xl font-bold mb-4 group">
+      I
+      <span
+        class="animated-gradient group-hover:text-black transition duration-300"
+        >BUILD WITH PYTHON</span
+      >
+    </h1>
+    <p
+      class="max-w-md text-gray-700 leading-relaxed text-base transition-colors duration-300 hover:text-black"
+    >
+      👋 I'm Faisal Zia — a Python-powered developer crafting practical apps,
+      web tools, and automation bots. From Flask to data crunching, I turn ideas
+      into code that works. Let’s build something cool. 💡
+    </p>
+  </div>
+</section>
+
+<!-- featured projects section -->
+<section class="px-6 py-12 bg-gray-50">
+  <h2 class="text-3xl font-bold text-center mb-16">🚀 Featured Projects</h2>
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6"
+  >
+    {% for project in projects %}
+    <div class="w-64 bg-gray-100 rounded-lg p-4 shadow text-center">
+      {% if project.image_url.startswith('http') or
+      project.image_url.endswith(('.png', '.jpg', '.jpeg', '.svg')) %}
+      <img
+        src="{{ project.image_url }}"
+        class="w-full h-32 object-cover rounded"
+      />
+      {% else %}
+      <div class="text-6xl">{{ project.image_url }}</div>
+      {% endif %}
+      <h3 class="mt-2 font-semibold text-lg">{{ project.title }}</h3>
+      <p class="text-sm text-gray-600">{{ project.description }}</p>
+      <div class="flex justify-between items-center mt-3">
+        <a
+          href="{{ project.github_link }}"
+          target="_blank"
+          class="text-sm text-blue-600 flex items-center"
+        >
+          <i class="fab fa-github mr-1"></i> GitHub
+        </a>
+        <form
+          method="POST"
+          action="{{ url_for('like_project', id=project.id) }}"
+        >
+          <button type="submit" class="text-sm bg-pink-200 px-2 py-1 rounded">
+            ❤️ {{ project.likes }}
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Show All Button -->
+  <div class="mt-6 text-right">
+    <a
+      href="{{ url_for('all_projects') }}"
+      class="inline-block bg-black text-white px-4 py-2 rounded-md shadow hover:bg-gray-800 transition"
+    >
+      Show All Projects →
+    </a>
+  </div>
+</section>
+
+<!-- Skills & Tech Stack Section -->
+<section class="bg-white py-16 px-6">
+  <h2 class="text-3xl font-bold text-center mb-16">🛠️ Skills & Technologies</h2>
+
+  <div
+    class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative"
+  >
+    <!-- Block 1 -->
+    <div
+      class="bg-gray-100 rounded-2xl p-6 shadow hover:shadow-lg transition duration-300 transform -translate-y-6"
+    >
+      <h3 class="text-xl font-semibold mb-4">Languages</h3>
+      <ul class="space-y-2 text-gray-800">
+        <li class="hover:text-black transition">🐍 Python (Advanced)</li>
+        <li class="hover:text-black transition">🌶️ Flask</li>
+        <li class="hover:text-black transition">🧾 HTML5/CSS3</li>
+        <li class="hover:text-black transition">📦 Bootstrap</li>
+        <li class="hover:text-black transition">🗃️ SQL</li>
+      </ul>
+    </div>
+
+    <!-- Block 2 -->
+    <div
+      class="bg-gray-100 rounded-2xl p-6 shadow hover:shadow-lg transition duration-300 transform translate-y-6"
+    >
+      <h3 class="text-xl font-semibold mb-4">Data & ML</h3>
+      <ul class="space-y-2 text-gray-800">
+        <li class="hover:text-black transition">🐼 Pandas</li>
+        <li class="hover:text-black transition">🔢 NumPy</li>
+        <li class="hover:text-black transition">📈 Matplotlib / Plotly</li>
+        <li class="hover:text-black transition">🧠 Scikit-learn</li>
+        <li class="hover:text-black transition">📊 Seaborn</li>
+      </ul>
+    </div>
+
+    <!-- Block 3 -->
+    <div
+      class="bg-gray-100 rounded-2xl p-6 shadow hover:shadow-lg transition duration-300 transform -translate-y-12"
+    >
+      <h3 class="text-xl font-semibold mb-4">Tools</h3>
+      <ul class="space-y-2 text-gray-800">
+        <li class="hover:text-black transition">🕷️ Selenium</li>
+        <li class="hover:text-black transition">🍜 Beautiful Soup</li>
+        <li class="hover:text-black transition">🛢️ SQLite / PostgreSQL</li>
+        <li class="hover:text-black transition">🐙 Git / GitHub</li>
+        <li class="hover:text-black transition">🔌 REST APIs</li>
+        <li class="hover:text-black transition">🪟 Tkinter</li>
+        <li class="hover:text-black transition">💻 Bash</li>
+      </ul>
+    </div>
+
+    <!-- Block 4 -->
+    <div
+      class="bg-gray-100 rounded-2xl p-6 shadow hover:shadow-lg transition duration-300 transform translate-y-2"
+    >
+      <h3 class="text-xl font-semibold mb-4">Environments</h3>
+      <ul class="space-y-2 text-gray-800">
+        <li class="hover:text-black transition">🧠 PyCharm</li>
+        <li class="hover:text-black transition">📓 Jupyter Notebook</li>
+        <li class="hover:text-black transition">🌐 Google Colab</li>
+        <li class="hover:text-black transition">📝 VS Code</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- contact section -->
+<section class="w-full bg-white px-6 py-16 flex justify-center items-center">
+  <div
+    class="bg-gray-100 p-8 rounded-2xl shadow-lg max-w-2xl w-full text-center"
+  >
+    <h2 class="text-2xl md:text-3xl font-bold mb-6">🤝 Let’s Connect</h2>
+    <p class="text-gray-700 mb-8">
+      Whether it's a project idea, collaboration, or just a hello — I’d love to
+      hear from you!
+    </p>
+    <div
+      class="flex flex-col sm:flex-row gap-4 justify-center items-center text-base font-medium"
+    >
+      <a
+        href="mailto:zia639329@gmail.com"
+        class="hover:text-black transition duration-300"
+      >
+        📧 zia639329@gmail.com
+      </a>
+      <a
+        href="https://www.linkedin.com/in/faisal-zia-dev/"
+        target="_blank"
+        class="hover:text-black transition duration-300"
+      >
+        💼 LinkedIn
+      </a>
+      <a
+        href="https://github.com/Faisal-Chap"
+        target="_blank"
+        class="hover:text-black transition duration-300"
+      >
+        🐙 GitHub
+      </a>
+      <a
+        href="https://x.com/faisalziachap"
+        target="_blank"
+        class="hover:text-black transition duration-300"
+      >
+        🐦 Twitter
+      </a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

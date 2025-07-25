@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Faisal Chap{% endblock %}</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐍</text></svg>"
+    />
+
+    <!-- Tailwind CSS will be added here later -->
+
+    <!-- Font Awesome for social icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body class="bg-gray-100 text-gray-900 font-sans">
+    <header class="p-4 bg-white shadow flex justify-between items-center">
+      <!-- Site Title -->
+      <a
+        href="{{ url_for('index') }}"
+        class="text-xl font-semibold hover:text-blue-600"
+      >
+        Faisal Chap
+      </a>
+
+      <!-- Social Icons -->
+      <div class="flex space-x-4 text-xl text-gray-600 items-center">
+        <!-- X Icon -->
+        <a
+          href="https://x.com/faisalziachap"
+          target="_blank"
+          class="hover:text-black flex top-[-1px] items-center w-5 h-3"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 50 50"
+            class="relative bottom-[1px] w-6 h-6 relative fill-current"
+          >
+            <path
+              d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"
+            ></path>
+          </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/faisal-zia-dev"
+          target="_blank"
+          class="hover:text-blue-600 flex items-center w-5 h-5"
+        >
+          <i class="fab fa-linkedin w-5 h-5"></i>
+        </a>
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com/faisal-chap"
+          target="_blank"
+          class="hover:text-gray-800 flex items-center w-5 h-5"
+        >
+          <i class="fab fa-github w-5 h-5"></i>
+        </a>
+      </div>
+    </header>
+
+    <main class="p-0 m-0">{% block content %} {% endblock %}</main>
+
+    <footer class="p-4 text-center text-gray-600 text-sm">
+      © {{ current_year }} Faisal Chap. All rights reserved.
+      <br />
+    </footer>
+  </body>
+</html>
