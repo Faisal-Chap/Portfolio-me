@@ -9,8 +9,6 @@ from models import db, Project  # import db and Project model
 import os
 app = Flask(__name__)
 
-# Ensure the instance folder exists
-os.makedirs(os.path.join(app.root_path, 'instance'), exist_ok=True)
 
 # Use a consistent database path in the instance folder
 
