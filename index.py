@@ -13,7 +13,8 @@ app = Flask(__name__)
 os.makedirs(os.path.join(app.root_path, 'instance'), exist_ok=True)
 
 # Use a consistent database path in the instance folder
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///portfolio.db'
+
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize SQLAlchemy with app
